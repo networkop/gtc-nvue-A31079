@@ -1,0 +1,25 @@
+    router:
+      bgp:
+        enable: {{ 'on' if bgp.enabled else 'off' }}
+        autonomous-system: {{ bgp.asn }}
+        router-id: {{ bgp.id }}
+    vrf:
+      default:
+        router:
+          bgp:
+            address-family:
+              ipv4-unicast:
+                enable: on
+                redistribute:
+                  connected:
+                    enable: on
+            enable: on
+            neighbor:
+{% for neighbor in bgp.interfaces %}
+              {{ neighbor }}:
+                peer-group: UNDERLAY
+                type: unnumbered
+{% endfor %}{# bgp.interfaces #}
+            peer-group:
+              UNDERLAY:
+                remote-as: external

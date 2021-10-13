@@ -1,0 +1,7 @@
+graph "nvue" {
+  "leaf1" [ memory="1024" os="cumulus-vx-5.0-dev1610" cpus="1"]
+  "leaf2" [ memory="1024" os="cumulus-vx-5.0-dev1610" cpus="1"]
+  "spine" [ memory="1024" os="cumulus-vx-5.0-dev1610" cpus="1"]
+    "spine":"swp2" -- "leaf2":"swp2"
+    "leaf1":"swp2" -- "spine":"swp1"
+}

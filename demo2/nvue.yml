@@ -1,0 +1,17 @@
+---
+- hosts: leaf2
+  become: true
+  user: cumulus
+  gather_facts: false
+  roles:
+    - {role: nvue }
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+    bgp: 
+      enabled: yes
+      id: 10.10.10.2
+      asn: 65102
+      interfaces: 
+      - swp2
+    loopback: 10.10.10.2/32
+

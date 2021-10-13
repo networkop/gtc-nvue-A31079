@@ -1,0 +1,11 @@
+- set:
+    system:
+      hostname: {{ inventory_hostname }}
+{% if bgp is defined %}
+{%   include './features/bgp.j2' %}
+{% endif %}
+
+    interface:
+{% include './features/loopback.j2' %}
+
+{% include './features/swp.j2' %}

@@ -1,0 +1,7 @@
+{% for interface in bgp.interfaces|default() %}
+      {{ interface }}:
+        link:
+          state:
+            up: {}
+        type: swp
+{%   endfor %}

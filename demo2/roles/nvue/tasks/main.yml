@@ -1,0 +1,18 @@
+- name: Enable nvued
+  ansible.builtin.systemd:
+    state: started
+    name: nvued
+
+- name: Drop the nvue yaml
+  template:
+    src: "nvue.j2"
+    dest: /etc/nvue.d/auto.yaml
+    owner: nvue
+    group: nvue
+    mode: 0644
+
+- name: nvue config replace
+  ansible.builtin.shell: nv config replace /etc/nvue.d/auto.yaml
+
+- name: nvue config apply
+  ansible.builtin.shell: nv config apply -y
