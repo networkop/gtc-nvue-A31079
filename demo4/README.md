@@ -154,7 +154,7 @@ or just do:
 def pp(input):
     import yaml
     print('---')
-    print(yaml.dump(yaml.safe_load(api_client.last_response.data), indent=4))
+    print(yaml.dump(yaml.safe_load(input), indent=4))
     print('---')
 
 pp(api_client.last_response.data)
